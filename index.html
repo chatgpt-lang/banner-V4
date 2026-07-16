@@ -117,6 +117,13 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;hei
 .project-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 4px;}
 .btn-project{padding:12px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px;cursor:pointer;transition:all .2s;}
 .btn-project:hover{border-color:var(--accent2);color:var(--accent2);transform:translateY(-1px);}
+.advanced-config{padding:0;overflow:hidden;}
+.advanced-config summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px;cursor:pointer;}
+.advanced-config summary::-webkit-details-marker{display:none;}
+.advanced-config summary::after{content:'+';width:28px;height:28px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--accent2);font-size:18px;transition:all .2s;}
+.advanced-config[open] summary::after{content:'−';background:rgba(124,58,237,.18);border-color:var(--accent2);}
+.advanced-config-content{padding:0 22px 20px;border-top:1px solid var(--border);}
+.advanced-config-content .field:first-child{margin-top:16px;}
 .hidden-file{display:none;}
 .desktop-only.is-hidden{display:none;}
 .sync-note{font-size:10px;color:var(--muted);margin:0 0 8px;letter-spacing:.4px;}
@@ -265,17 +272,19 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;hei
       </div>
     </div>
 
-    <div class="card">
-      <div class="card-title"><span class="num">4</span> <span data-i18n="configurationTitle">CONFIGURATION</span></div>
-      <div class="field">
-        <label data-i18n="makeWebhook">URL Webhook Make</label>
-        <input type="text" id="webhook_url" value="https://hook.eu1.make.com/p5xddqp8e69ikw4b16d3cv2hd49vu51n">
+    <details class="card advanced-config">
+      <summary><span class="card-title"><span class="num">4</span> <span data-i18n="advancedSettings">PARAMÈTRES AVANCÉS</span></span></summary>
+      <div class="advanced-config-content">
+        <div class="field">
+          <label data-i18n="makeWebhook">URL Webhook Make</label>
+          <input type="text" id="webhook_url" value="https://hook.eu1.make.com/p5xddqp8e69ikw4b16d3cv2hd49vu51n">
+        </div>
+        <div class="field" style="margin-top:12px;">
+          <label data-i18n="statusWebhook">URL Webhook de suivi HD</label>
+          <input type="text" id="status_webhook_url" data-i18n-placeholder="statusWebhookPlaceholder" placeholder="À coller après la création du scénario de suivi Make">
+        </div>
       </div>
-      <div class="field" style="margin-top:12px;">
-        <label data-i18n="statusWebhook">URL Webhook de suivi HD</label>
-        <input type="text" id="status_webhook_url" data-i18n-placeholder="statusWebhookPlaceholder" placeholder="À coller après la création du scénario de suivi Make">
-      </div>
-    </div>
+    </details>
 
     <div class="progress-bar" id="progressBar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
     <div class="progress-steps" id="progressSteps">
@@ -496,6 +505,7 @@ const uiTranslations = {
     titleLine1:'Titre ligne 1 (FR + EN)',
     titleLine2:'Titre ligne 2 (FR + EN)',
     textsTitle:'TEXTES',
+    advancedSettings:'PARAMÈTRES AVANCÉS',
     configurationTitle:'CONFIGURATION',
     makeWebhook:'URL Webhook Make',
     statusWebhook:'URL Webhook de suivi HD',
@@ -528,6 +538,7 @@ const uiTranslations = {
     titleLine1:'Title line 1 (FR + EN)',
     titleLine2:'Title line 2 (FR + EN)',
     textsTitle:'TEXTS',
+    advancedSettings:'ADVANCED SETTINGS',
     configurationTitle:'CONFIGURATION',
     makeWebhook:'Make webhook URL',
     statusWebhook:'HD status webhook URL',
@@ -560,6 +571,7 @@ const uiTranslations = {
     titleLine1:'タイトル 1行目（FR + EN）',
     titleLine2:'タイトル 2行目（FR + EN）',
     textsTitle:'テキスト',
+    advancedSettings:'詳細設定',
     configurationTitle:'設定',
     makeWebhook:'Make Webhook URL',
     statusWebhook:'HD確認用Webhook URL',
