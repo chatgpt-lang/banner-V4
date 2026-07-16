@@ -411,7 +411,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;hei
 const CLOUD_NAME = "dyvmftiyu";
 const UPLOAD_PRESET = "banner_generator";
 const BASE_URL = new URL('.', window.location.href).href.replace(/\/$/, '');
-const TEMPLATE_VERSION = '20260716-title-no-jump-v1';
+const TEMPLATE_VERSION = '20260716-final-title-v2';
 const urls = {};
 let currentTab = 'desktop_fr';
 let iframeReady = false;
@@ -446,8 +446,8 @@ const defaultOverrides = {
 };
 const familyDefaultOverrides = {
   desktop:{titreSize:200,displaySize:95},
-  mobile:{titreSize:130,titreY:-10,displaySize:83,displayY:-13,pairBoosterSize:95,pairBoosterGap:22},
-  social:{titreSize:300,titreY:40,displaySize:110,displayY:28,pairBoosterSize:148,pairBoosterX:-11,pairBoosterGap:35,dispoY:16}
+  mobile:{titreSize:200,titreX:-50,titreY:-10,displaySize:83,displayY:-13,pairBoosterSize:95,pairBoosterGap:22},
+  social:{titreSize:146,titreY:0,displaySize:110,displayY:28,pairBoosterSize:148,pairBoosterX:-11,pairBoosterGap:35,dispoY:16}
 };
 function familyForTab(tab) {
   if (tab.startsWith('desktop')) return 'desktop';

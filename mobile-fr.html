@@ -149,7 +149,7 @@ function configureMotion() {
     const gn = (k, fallback=0) => parseFloat(p.get(k) || fallback);
     const gp = (k, fallback=100) => parseFloat(p.get(k) || fallback);
     const logoSize=gp('logoSize')/100, logoX=gn('logoX'), logoY=gn('logoY');
-    const titreSize=gp('titreSize',130)/100, titreX=gn('titreX'), titreY=gn('titreY',-10);
+    const titreSize=gp('titreSize',200)/100, titreX=gn('titreX',-50), titreY=gn('titreY',-10);
     const displaySize=gp('displaySize',83)/100, displayX=gn('displayX'), displayY=gn('displayY',-13);
     const pairBoosterSize=gp('pairBoosterSize',95)/100, pairBoosterX=gn('pairBoosterX'), pairBoosterGap=gn('pairBoosterGap',22), pairBoosterY=gn('pairBoosterY');
     const card1Size=gp('card1Size')/100, card1X=gn('card1X'), card1Y=gn('card1Y');
@@ -196,7 +196,7 @@ window.addEventListener('message', function(event) {
     if (el) el.style.transform = value;
   };
   transform('.logo-wrap', `translate(${n('logoX',0)}px,${n('logoY',0)}px) rotate(-6deg) scale(${n('logoSize',100)/100})`);
-  transform('.text-zone', `translate(${n('titreX',0)}px,${n('titreY',-10)}px) rotate(-6deg) scale(${n('titreSize',130)/100})`);
+  transform('.text-zone', `translate(${n('titreX',-50)}px,${n('titreY',-10)}px) rotate(-6deg) scale(${n('titreSize',200)/100})`);
   transform('.disp', `translateX(calc(-50% + ${n('displayX',0)}px)) translateY(${n('displayY',-13)}px) rotate(1deg) scale(${n('displaySize',83)/100})`);
   transform('.b-back-l', `translate(${n('pairBoosterX',0)-n('pairBoosterGap',22)}px,${n('pairBoosterY',0)}px) rotate(-10deg) scale(${n('pairBoosterSize',95)/100})`);
   transform('.b-back-r', `translate(${n('pairBoosterX',0)+n('pairBoosterGap',22)}px,${n('pairBoosterY',0)}px) rotate(10deg) scale(${n('pairBoosterSize',95)/100})`);
