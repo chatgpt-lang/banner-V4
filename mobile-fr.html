@@ -20,7 +20,7 @@ body{width:700px;height:420px;overflow:hidden;background:transparent;position:re
 .layer{position:absolute;left:14px;top:10px;width:672px;height:400px;z-index:10;overflow:visible;}
 .logo-wrap{position:absolute;left:-2px;top:6px;z-index:26;transform:rotate(-6deg);transform-origin:left top;}
 .logo-mega{height:122px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.9));}
-.text-zone{position:absolute;left:-70px;top:140px;width:260px;z-index:25;display:flex;flex-direction:column;align-items:center;transform:rotate(-6deg) scale(2);transform-origin:left top;overflow:visible;}
+.text-zone{position:absolute;left:105px;top:140px;width:260px;z-index:25;display:flex;flex-direction:column;align-items:center;transform:rotate(-6deg);transform-origin:center top;overflow:visible;}
 .titles-block{width:260px;display:flex;flex-direction:column;align-items:center;}
 .title-wrap{position:relative;display:block;line-height:0.88;width:260px;text-align:center;white-space:normal;word-break:normal;overflow-wrap:normal;}
 .t{font-family:'Bebas Neue',sans-serif;font-size:54px;font-style:italic;letter-spacing:2px;display:block;text-align:center;width:100%;word-break:normal;overflow-wrap:break-word;}
@@ -149,7 +149,7 @@ function configureMotion() {
     const gn = (k, fallback=0) => parseFloat(p.get(k) || fallback);
     const gp = (k, fallback=100) => parseFloat(p.get(k) || fallback);
     const logoSize=gp('logoSize')/100, logoX=gn('logoX'), logoY=gn('logoY');
-    const titreSize=gp('titreSize',100)/100, titreX=gn('titreX',-20), titreY=gn('titreY');
+    const titreSize=gp('titreSize',150)/100, titreX=gn('titreX'), titreY=gn('titreY',-10);
     const displaySize=gp('displaySize',83)/100, displayX=gn('displayX'), displayY=gn('displayY',-13);
     const pairBoosterSize=gp('pairBoosterSize',95)/100, pairBoosterX=gn('pairBoosterX'), pairBoosterGap=gn('pairBoosterGap',22), pairBoosterY=gn('pairBoosterY');
     const card1Size=gp('card1Size')/100, card1X=gn('card1X'), card1Y=gn('card1Y');
@@ -163,7 +163,7 @@ function configureMotion() {
       }
       const textZone = document.querySelector('.text-zone');
       if (textZone) {
-        textZone.style.transform = 'translate('+titreX+'px,'+titreY+'px) rotate(-6deg) scale('+(titreSize*2)+')';
+        textZone.style.transform = 'translate('+titreX+'px,'+titreY+'px) rotate(-6deg) scale('+titreSize+')';
       }
       const disp = document.querySelector('.disp');
       if (disp) {
@@ -196,7 +196,7 @@ window.addEventListener('message', function(event) {
     if (el) el.style.transform = value;
   };
   transform('.logo-wrap', `translate(${n('logoX',0)}px,${n('logoY',0)}px) rotate(-6deg) scale(${n('logoSize',100)/100})`);
-  transform('.text-zone', `translate(${n('titreX',-20)}px,${n('titreY',0)}px) rotate(-6deg) scale(${(n('titreSize',100)/100)*2})`);
+  transform('.text-zone', `translate(${n('titreX',0)}px,${n('titreY',-10)}px) rotate(-6deg) scale(${n('titreSize',150)/100})`);
   transform('.disp', `translateX(calc(-50% + ${n('displayX',0)}px)) translateY(${n('displayY',-13)}px) rotate(1deg) scale(${n('displaySize',83)/100})`);
   transform('.b-back-l', `translate(${n('pairBoosterX',0)-n('pairBoosterGap',22)}px,${n('pairBoosterY',0)}px) rotate(-10deg) scale(${n('pairBoosterSize',95)/100})`);
   transform('.b-back-r', `translate(${n('pairBoosterX',0)+n('pairBoosterGap',22)}px,${n('pairBoosterY',0)}px) rotate(10deg) scale(${n('pairBoosterSize',95)/100})`);

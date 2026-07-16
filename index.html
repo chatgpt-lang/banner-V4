@@ -411,7 +411,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;hei
 const CLOUD_NAME = "dyvmftiyu";
 const UPLOAD_PRESET = "banner_generator";
 const BASE_URL = new URL('.', window.location.href).href.replace(/\/$/, '');
-const TEMPLATE_VERSION = '20260716-final-layout-v1';
+const TEMPLATE_VERSION = '20260716-mobile-title-stable-v1';
 const urls = {};
 let currentTab = 'desktop_fr';
 let iframeReady = false;
@@ -446,8 +446,8 @@ const defaultOverrides = {
 };
 const familyDefaultOverrides = {
   desktop:{titreSize:200,displaySize:95},
-  mobile:{titreSize:100,titreX:-20,displaySize:83,displayY:-13,pairBoosterSize:95,pairBoosterGap:22},
-  social:{titreY:152,displaySize:110,displayY:28,pairBoosterSize:148,pairBoosterX:-11,pairBoosterGap:35,dispoY:16}
+  mobile:{titreSize:150,titreY:-10,displaySize:83,displayY:-13,pairBoosterSize:95,pairBoosterGap:22},
+  social:{titreSize:146,titreY:152,displaySize:110,displayY:28,pairBoosterSize:148,pairBoosterX:-11,pairBoosterGap:35,dispoY:16}
 };
 function familyForTab(tab) {
   if (tab.startsWith('desktop')) return 'desktop';
@@ -976,8 +976,7 @@ function applyLiveOverrides() {
   };
 
   transform('.logo-wrap', `translate(${ov.logoX}px,${ov.logoY}px) rotate(${social ? -4 : (desktop ? -5 : -6)}deg) scale(${ov.logoSize/100})`);
-  const titreScale = (!desktop && !social) ? (ov.titreSize/100)*2 : ov.titreSize/100;
-  transform('.text-zone', `translate(${ov.titreX}px,${ov.titreY}px) rotate(${social ? -5 : (desktop ? -5 : -6)}deg) scale(${titreScale})`);
+  transform('.text-zone', `translate(${ov.titreX}px,${ov.titreY}px) rotate(${social ? -5 : (desktop ? -5 : -6)}deg) scale(${ov.titreSize/100})`);
   transform('.disp', `translateX(calc(-50% + ${ov.displayX}px)) translateY(${ov.displayY}px) rotate(${social ? 2 : (desktop ? 6 : 1)}deg) scale(${ov.displaySize/100})`);
   transform('.b-back-l', `translate(${ov.pairBoosterX - ov.pairBoosterGap}px,${ov.pairBoosterY}px) rotate(${social ? -12 : -10}deg) scale(${ov.pairBoosterSize/100})`);
   transform('.b-back-r', `translate(${ov.pairBoosterX + ov.pairBoosterGap}px,${ov.pairBoosterY}px) rotate(${social ? 12 : (desktop ? 16 : 10)}deg) scale(${ov.pairBoosterSize/100})`);
