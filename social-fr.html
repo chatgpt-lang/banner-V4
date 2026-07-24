@@ -22,6 +22,8 @@ body{width:1080px;height:1920px;overflow:hidden;background:transparent;position:
 .logo-mega{height:230px;width:auto;max-width:812px;object-fit:contain;filter:drop-shadow(0 8px 18px rgba(0,0,0,0.9));}
 .text-zone{position:absolute;left:48px;top:300px;width:900px;z-index:27;display:flex;flex-direction:column;align-items:center;transform:rotate(-5deg);transform-origin:center top;overflow:visible;}
 .titles-block{width:900px;display:flex;flex-direction:column;align-items:center;}
+.title-image{display:none;width:900px;text-align:center;}
+.title-image img{max-width:100%;max-height:320px;object-fit:contain;filter:drop-shadow(0 10px 24px rgba(0,0,0,.75));}
 .title-wrap{position:relative;display:block;line-height:0.86;width:900px;text-align:center;white-space:normal;word-break:normal;overflow-wrap:normal;}
 .t{font-family:'Bebas Neue',sans-serif;font-size:420px;font-style:italic;letter-spacing:3px;display:block;text-align:center;width:100%;word-break:normal;overflow-wrap:break-word;}
 .c0{position:absolute;top:3px;left:0;width:100%;color:transparent;-webkit-text-stroke:0px transparent;z-index:0;display:none;}
@@ -69,6 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const t1 = g('titre_ligne1'), t2 = g('titre_ligne2');
   ['ref1a','ref1b','ref1c','ref1d','ref1e'].forEach(id => { const el = document.getElementById(id); if(el) el.textContent = t1; });
   ['ref2a','ref2b','ref2c','ref2d','ref2e'].forEach(id => { const el = document.getElementById(id); if(el) el.textContent = t2; });
+  applyTitleMode();
   document.querySelectorAll('.c2').forEach(el => el.style.webkitTextStroke = '5px ' + outline);
   document.querySelectorAll('.c4').forEach(el => {
     el.style.background = grad;
@@ -107,6 +110,16 @@ function configureMotion() {
   document.documentElement.style.setProperty('--motion-mult', intensity.toFixed(2));
   document.documentElement.style.setProperty('--motion-speed-factor', (1.55 - speed).toFixed(2));
 }
+function applyTitleMode() {
+  const titleUrl = g('title_image_url');
+  const useImage = g('title_mode') === 'image' && titleUrl;
+  const block = document.querySelector('.titles-block');
+  const image = document.querySelector('.title-image');
+  const img = document.querySelector('.title-image img');
+  if (block) block.style.display = useImage ? 'none' : 'flex';
+  if (image) image.style.display = useImage ? 'block' : 'none';
+  if (img && titleUrl) img.src = titleUrl;
+}
 </script>
 <div class="banner-bg">
   <div class="bg"></div>
@@ -131,6 +144,7 @@ function configureMotion() {
         <span class="t c4" id="ref2e"></span>
       </div>
     </div>
+    <div class="title-image"><img src=""></div>
   </div>
   <div class="dispo-outer">
     <span class="dispo-line"></span>
@@ -202,6 +216,30 @@ window.addEventListener('message', function(event) {
   transform('.b-back-r', `translate(${n('pairBoosterX',-11)+n('pairBoosterGap',35)}px,${n('pairBoosterY',0)}px) rotate(12deg) scale(${n('pairBoosterSize',148)/100})`);
   transform('.dispo-outer', `translate(${n('dispoX',0)}px,${n('dispoY',16)}px) rotate(-5deg) scale(${n('dispoSize',100)/100})`);
 });
+</script>
+<script>
+(function(){
+  const p = new URLSearchParams(window.location.search);
+  const n = key => Number.isFinite(Number(p.get(key))) ? Number(p.get(key)) : 0;
+  const rotate = (selector, base, key) => {
+    const el = document.querySelector(selector);
+    if (!el) return;
+    const value = `rotate(${base + n(key)}deg)`;
+    el.style.transform = el.style.transform && /rotate\([^)]*\)/.test(el.style.transform)
+      ? el.style.transform.replace(/rotate\([^)]*\)/, value)
+      : (el.style.transform || '') + ' ' + value;
+  };
+  const apply = () => {
+    rotate('.logo-wrap', -4, 'logoRot');
+    rotate('.text-zone', -5, 'titreRot');
+    rotate('.disp', 2, 'displayRot');
+    rotate('.b-back-l', -12, 'pairBoosterRot');
+    rotate('.b-back-r', 12, 'pairBoosterRot');
+    rotate('.dispo-outer', -5, 'dispoRot');
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => setTimeout(apply, 0));
+  else setTimeout(apply, 0);
+})();
 </script>
 </body>
 </html>

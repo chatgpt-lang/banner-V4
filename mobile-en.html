@@ -22,6 +22,8 @@ body{width:700px;height:420px;overflow:hidden;background:transparent;position:re
 .logo-mega{height:122px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.9));}
 .text-zone{position:absolute;left:65px;top:140px;width:260px;z-index:25;display:flex;flex-direction:column;align-items:center;transform:rotate(-6deg);transform-origin:center top;overflow:visible;}
 .titles-block{width:260px;display:flex;flex-direction:column;align-items:center;}
+.title-image{display:none;width:260px;text-align:center;}
+.title-image img{max-width:100%;max-height:100px;object-fit:contain;filter:drop-shadow(0 3px 8px rgba(0,0,0,.75));}
 .title-wrap{position:relative;display:block;line-height:0.88;width:260px;text-align:center;white-space:normal;word-break:normal;overflow-wrap:normal;}
 .t{font-family:'Bebas Neue',sans-serif;font-size:54px;font-style:italic;letter-spacing:2px;display:block;text-align:center;width:100%;word-break:normal;overflow-wrap:break-word;}
 .c0{position:absolute;top:3px;left:0;width:100%;color:transparent;-webkit-text-stroke:0px transparent;z-index:0;display:none;}
@@ -69,6 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const t1 = g('titre_ligne1'), t2 = g('titre_ligne2');
   ['ref1a','ref1b','ref1c','ref1d','ref1e'].forEach(id => { const el = document.getElementById(id); if(el) el.textContent = t1; });
   ['ref2a','ref2b','ref2c','ref2d','ref2e'].forEach(id => { const el = document.getElementById(id); if(el) el.textContent = t2; });
+  applyTitleMode();
   document.querySelectorAll('.c2').forEach(el => el.style.webkitTextStroke = '2px ' + outline);
   document.querySelectorAll('.c4').forEach(el => {
     el.style.background = grad;
@@ -107,6 +110,16 @@ function configureMotion() {
   document.documentElement.style.setProperty('--motion-mult', intensity.toFixed(2));
   document.documentElement.style.setProperty('--motion-speed-factor', (1.55 - speed).toFixed(2));
 }
+function applyTitleMode() {
+  const titleUrl = g('title_image_url');
+  const useImage = g('title_mode') === 'image' && titleUrl;
+  const block = document.querySelector('.titles-block');
+  const image = document.querySelector('.title-image');
+  const img = document.querySelector('.title-image img');
+  if (block) block.style.display = useImage ? 'none' : 'flex';
+  if (image) image.style.display = useImage ? 'block' : 'none';
+  if (img && titleUrl) img.src = titleUrl;
+}
 </script>
 <div class="banner-bg">
   <div class="bg"></div>
@@ -131,6 +144,7 @@ function configureMotion() {
         <span class="t c4" id="ref2e"></span>
       </div>
     </div>
+    <div class="title-image"><img src=""></div>
   </div>
   <div class="dispo-outer">
     <span class="dispo-line"></span>
@@ -202,6 +216,30 @@ window.addEventListener('message', function(event) {
   transform('.b-back-r', `translate(${n('pairBoosterX',0)+n('pairBoosterGap',22)}px,${n('pairBoosterY',0)}px) rotate(10deg) scale(${n('pairBoosterSize',95)/100})`);
   transform('.dispo-outer', `translate(${n('dispoX',0)}px,${n('dispoY',0)}px) rotate(-6deg) scale(${n('dispoSize',100)/100})`);
 });
+</script>
+<script>
+(function(){
+  const p = new URLSearchParams(window.location.search);
+  const n = key => Number.isFinite(Number(p.get(key))) ? Number(p.get(key)) : 0;
+  const rotate = (selector, base, key) => {
+    const el = document.querySelector(selector);
+    if (!el) return;
+    const value = `rotate(${base + n(key)}deg)`;
+    el.style.transform = el.style.transform && /rotate\([^)]*\)/.test(el.style.transform)
+      ? el.style.transform.replace(/rotate\([^)]*\)/, value)
+      : (el.style.transform || '') + ' ' + value;
+  };
+  const apply = () => {
+    rotate('.logo-wrap', -6, 'logoRot');
+    rotate('.text-zone', -6, 'titreRot');
+    rotate('.disp', 1, 'displayRot');
+    rotate('.b-back-l', -10, 'pairBoosterRot');
+    rotate('.b-back-r', 10, 'pairBoosterRot');
+    rotate('.dispo-outer', -6, 'dispoRot');
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => setTimeout(apply, 0));
+  else setTimeout(apply, 0);
+})();
 </script>
 </body>
 </html>

@@ -45,14 +45,23 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .field-group{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
 .field{display:flex;flex-direction:column;gap:6px;}
 .field label{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);}
-.field input[type="text"]{background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;transition:border-color 0.2s;outline:none;}
-.field input[type="text"]:focus{border-color:var(--accent);}
+.field input[type="text"],.field select{background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;transition:border-color 0.2s;outline:none;}
+.field input[type="text"]:focus,.field select:focus{border-color:var(--accent);}
 .color-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:12px;}
 .color-field{display:flex;flex-direction:column;align-items:center;gap:6px;}
 .color-field label{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);text-align:center;}
 .color-field input[type="color"]{width:44px;height:44px;border:2px solid var(--border);border-radius:8px;cursor:pointer;background:none;padding:2px;}
 .color-field input[type="color"]::-webkit-color-swatch-wrapper{padding:0;border-radius:5px;}
 .color-field input[type="color"]::-webkit-color-swatch{border:none;border-radius:5px;}
+.color-tools{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;}
+.palette-btn{display:inline-flex;align-items:center;gap:7px;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:7px 10px;color:var(--text);font-size:11px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.palette-btn:hover{border-color:var(--accent2);color:var(--accent2);transform:translateY(-1px);}
+.palette-dot{width:14px;height:14px;border-radius:50%;border:1px solid rgba(255,255,255,.35);box-shadow:8px 0 0 var(--dot2),16px 0 0 var(--dot3);}
+.palette-delete{border:0;background:rgba(239,68,68,.16);color:#fca5a5;border-radius:50%;width:18px;height:18px;line-height:18px;cursor:pointer;font-size:12px;margin-left:2px;}
+.tool-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+.btn-soft{padding:10px 12px;background:rgba(124,58,237,.13);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;}
+.btn-soft:hover{border-color:var(--accent2);color:var(--accent2);}
+.mini-status{font-size:11px;color:var(--muted);min-height:16px;margin-top:8px;}
 .titre-preview{background:#0d0618;border-radius:10px;padding:20px;text-align:center;margin-top:14px;}
 .titre-preview-label{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;display:block;}
 .titre-preview-text{font-family:'Bebas Neue',sans-serif;font-size:52px;font-style:italic;letter-spacing:3px;line-height:0.9;}
@@ -114,9 +123,20 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;hei
 .toggle-row input{width:18px;height:18px;accent-color:var(--accent2);}
 .btn-link{width:100%;padding:14px;background:linear-gradient(135deg,#4338ca,#7c3aed);border:none;border-radius:12px;color:white;font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:3px;cursor:pointer;transition:all 0.2s;margin-top:14px;}
 .btn-link:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(124,58,237,0.35);}
-.project-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 4px;}
+.project-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 4px;}
 .btn-project{padding:12px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px;cursor:pointer;transition:all .2s;}
 .btn-project:hover{border-color:var(--accent2);color:var(--accent2);transform:translateY(-1px);}
+.project-library{display:none;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;margin:12px 0 4px;}
+.project-library.show{display:block;}
+.project-library-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:var(--accent2);margin-bottom:10px;}
+.project-list{display:flex;flex-direction:column;gap:8px;}
+.project-item{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;}
+.project-name{font-weight:700;font-size:13px;color:var(--text);}
+.project-date{font-size:10px;color:var(--muted);margin-top:2px;}
+.project-empty{font-size:12px;color:var(--muted);}
+.btn-mini{border:1px solid var(--border);background:transparent;color:var(--text);border-radius:8px;padding:6px 9px;font-size:11px;font-weight:700;cursor:pointer;}
+.btn-mini:hover{border-color:var(--accent2);color:var(--accent2);}
+.btn-mini.danger:hover{border-color:var(--error);color:#fca5a5;}
 .advanced-config{padding:0;overflow:hidden;}
 .advanced-config summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px;cursor:pointer;}
 .advanced-config summary::-webkit-details-marker{display:none;}
@@ -139,7 +159,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;hei
 .btn-reset:hover{border-color:var(--accent);color:var(--accent2);}
 .live-badge{display:inline-block;background:rgba(34,197,94,0.2);border:1px solid rgba(34,197,94,0.4);border-radius:20px;padding:2px 10px;font-size:10px;color:var(--success);letter-spacing:1px;margin-left:10px;vertical-align:middle;}
 @media(max-width:1050px){.sliders-grid{grid-template-columns:1fr 1fr;}}
-@media(max-width:720px){.editor-card{padding:12px}.sliders-grid{grid-template-columns:1fr}.editor-sticky{top:0}.banner-tab{flex:1;text-align:center;padding:7px 5px}}
+@media(max-width:720px){.editor-card{padding:12px}.sliders-grid{grid-template-columns:1fr}.editor-sticky{top:0}.banner-tab{flex:1;text-align:center;padding:7px 5px}.project-actions,.tool-row{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -226,12 +246,32 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;hei
       <div class="card-title"><span class="num">2</span> <span data-i18n="titleColors">TITRE & COULEURS</span></div>
       <div class="field-group">
         <div class="field">
+          <label data-i18n="titleType">Type de titre</label>
+          <select id="title_mode" onchange="updateTitleMode();sendToIframe()">
+            <option value="text" data-i18n="titleModeText">Titre texte</option>
+            <option value="image" data-i18n="titleModeImage">Image / logo</option>
+          </select>
+        </div>
+        <div class="field">
           <label data-i18n="titleLine1">Titre ligne 1 (FR + EN)</label>
           <input type="text" id="titre_ligne1" placeholder="ex: ABYSS" value="ABYSS" oninput="updatePreview();sendToIframe()">
         </div>
+      </div>
+      <div class="field-group">
         <div class="field">
           <label data-i18n="titleLine2">Titre ligne 2 (FR + EN)</label>
           <input type="text" id="titre_ligne2" placeholder="ex: EYE" value="EYE" oninput="updatePreview();sendToIframe()">
+        </div>
+        <div class="field">
+          <label data-i18n="titleImage">Image / logo de titre</label>
+          <div class="upload-zone" id="zone-title-image" style="min-height:82px;padding:12px;">
+            <input type="file" accept="image/*" onchange="uploadToCloudinary(this,'title_image_url','zone-title-image','prev-title-image')">
+            <span class="upload-icon">🖼️</span>
+            <div class="spinner-small" style="display:none" id="spin-title-image"></div>
+            <img class="preview-img" id="prev-title-image">
+            <span class="upload-label" data-i18n="titleImageLabel">Image titre</span>
+            <span class="upload-sub" data-i18n="titleImageSub">Optionnel — remplace le texte</span>
+          </div>
         </div>
       </div>
       <div class="color-grid">
@@ -240,6 +280,15 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;hei
         <div class="color-field"><label>Noir</label><input type="color" id="col3" value="#0d0d18" oninput="updatePreview();sendToIframe()"></div>
         <div class="color-field"><label>Milieu B</label><input type="color" id="col4" value="#6858a0" oninput="updatePreview();sendToIframe()"></div>
         <div class="color-field"><label>Outline</label><input type="color" id="col_outline" value="#8a9a28" oninput="updatePreview();sendToIframe()"></div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Couleurs préenregistrées</div>
+        <div class="color-tools" id="colorPresetList"></div>
+        <div class="tool-row">
+          <button type="button" class="btn-soft" onclick="saveCurrentPalette()">+ Enregistrer cette combinaison</button>
+          <button type="button" class="btn-soft" onclick="suggestColorsFromProduct()">✨ Adapter aux couleurs du produit</button>
+        </div>
+        <div class="mini-status" id="paletteStatus"></div>
       </div>
       <div style="margin-top:12px;">
         <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Couleur lueur</div>
@@ -302,8 +351,13 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;hei
 
   <div class="project-actions">
     <button type="button" class="btn-project" onclick="saveProject()" data-i18n="saveProject">💾 SAUVEGARDER LE PROJET</button>
+    <button type="button" class="btn-project" onclick="exportCurrentProjectJson()" data-i18n="exportProject">⬇ EXPORTER JSON</button>
     <button type="button" class="btn-project" onclick="document.getElementById('projectImport').click()" data-i18n="importProject">📂 IMPORTER UN PROJET</button>
     <input class="hidden-file" type="file" id="projectImport" accept="application/json,.json" onchange="importProject(this)">
+  </div>
+  <div class="project-library" id="projectLibrary">
+    <div class="project-library-title" data-i18n="savedProjects">PROJETS ENREGISTRÉS</div>
+    <div class="project-list" id="projectList"></div>
   </div>
 
   <div class="error-msg" id="errorMsg"></div>
@@ -338,6 +392,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;hei
         <div class="slider-row"><div class="slider-label"><span>Taille</span><span class="val" id="val-logo-size">100%</span></div><input type="range" id="logo-size" min="50" max="200" value="100" oninput="onSlider(this)"></div>
         <div class="slider-row"><div class="slider-label"><span>Gauche / Droite</span><span class="val" id="val-logo-x">0px</span></div><input type="range" id="logo-x" min="-120" max="120" value="0" oninput="onSlider(this)"></div>
         <div class="slider-row"><div class="slider-label"><span>Haut / Bas</span><span class="val" id="val-logo-y">0px</span></div><input type="range" id="logo-y" min="-120" max="120" value="0" oninput="onSlider(this)"></div>
+        <div class="slider-row"><div class="slider-label"><span>Rotation</span><span class="val" id="val-logo-rot">0°</span></div><input type="range" id="logo-rot" min="-360" max="360" value="0" oninput="onSlider(this)"></div>
       </div>
       <!-- Titre -->
       <div class="slider-group">
@@ -345,6 +400,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;hei
         <div class="slider-row"><div class="slider-label"><span>Taille</span><span class="val" id="val-titre-size">100%</span></div><input type="range" id="titre-size" min="50" max="300" value="100" oninput="onSlider(this)"></div>
         <div class="slider-row"><div class="slider-label"><span>Gauche / Droite</span><span class="val" id="val-titre-x">0px</span></div><input type="range" id="titre-x" min="-400" max="150" value="0" oninput="onSlider(this)"></div>
         <div class="slider-row"><div class="slider-label"><span>Haut / Bas</span><span class="val" id="val-titre-y">0px</span></div><input type="range" id="titre-y" min="-120" max="120" value="0" oninput="onSlider(this)"></div>
+        <div class="slider-row"><div class="slider-label"><span>Rotation</span><span class="val" id="val-titre-rot">0°</span></div><input type="range" id="titre-rot" min="-360" max="360" value="0" oninput="onSlider(this)"></div>
       </div>
       <!-- Display -->
       <div class="slider-group">
@@ -352,6 +408,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;hei
         <div class="slider-row"><div class="slider-label"><span>Taille</span><span class="val" id="val-display-size">100%</span></div><input type="range" id="display-size" min="50" max="200" value="100" oninput="onSlider(this)"></div>
         <div class="slider-row"><div class="slider-label"><span>Gauche / Droite</span><span class="val" id="val-display-x">0px</span></div><input type="range" id="display-x" min="-150" max="150" value="0" oninput="onSlider(this)"></div>
         <div class="slider-row"><div class="slider-label"><span>Haut / Bas</span><span class="val" id="val-display-y">0px</span></div><input type="range" id="display-y" min="-120" max="120" value="0" oninput="onSlider(this)"></div>
+        <div class="slider-row"><div class="slider-label"><span>Rotation</span><span class="val" id="val-display-rot">0°</span></div><input type="range" id="display-rot" min="-360" max="360" value="0" oninput="onSlider(this)"></div>
       </div>
       <!-- Booster gauche -->
       <div class="slider-group desktop-only">
@@ -359,6 +416,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;hei
         <div class="slider-row"><div class="slider-label"><span>Taille</span><span class="val" id="val-left-booster-size">100%</span></div><input type="range" id="left-booster-size" min="50" max="200" value="100" oninput="onSlider(this)"></div>
         <div class="slider-row"><div class="slider-label"><span>Gauche / Droite</span><span class="val" id="val-left-booster-x">0px</span></div><input type="range" id="left-booster-x" min="-150" max="150" value="0" oninput="onSlider(this)"></div>
         <div class="slider-row"><div class="slider-label"><span>Haut / Bas</span><span class="val" id="val-left-booster-y">0px</span></div><input type="range" id="left-booster-y" min="-120" max="120" value="0" oninput="onSlider(this)"></div>
+        <div class="slider-row"><div class="slider-label"><span>Rotation</span><span class="val" id="val-left-booster-rot">0°</span></div><input type="range" id="left-booster-rot" min="-360" max="360" value="0" oninput="onSlider(this)"></div>
       </div>
       <!-- Paire de boosters -->
       <div class="slider-group">
@@ -367,6 +425,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;hei
         <div class="slider-row"><div class="slider-label"><span>Gauche / Droite</span><span class="val" id="val-pair-booster-x">0px</span></div><input type="range" id="pair-booster-x" min="-150" max="150" value="0" oninput="onSlider(this)"></div>
         <div class="slider-row"><div class="slider-label"><span>Éloignement</span><span class="val" id="val-pair-booster-gap">0px</span></div><input type="range" id="pair-booster-gap" min="-120" max="180" value="0" oninput="onSlider(this)"></div>
         <div class="slider-row"><div class="slider-label"><span>Haut / Bas</span><span class="val" id="val-pair-booster-y">0px</span></div><input type="range" id="pair-booster-y" min="-120" max="120" value="0" oninput="onSlider(this)"></div>
+        <div class="slider-row"><div class="slider-label"><span>Rotation</span><span class="val" id="val-pair-booster-rot">0°</span></div><input type="range" id="pair-booster-rot" min="-360" max="360" value="0" oninput="onSlider(this)"></div>
       </div>
       <!-- Carte 1 -->
       <div class="slider-group desktop-only">
@@ -374,6 +433,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;hei
         <div class="slider-row"><div class="slider-label"><span>Taille</span><span class="val" id="val-card1-size">100%</span></div><input type="range" id="card1-size" min="50" max="200" value="100" oninput="onSlider(this)"></div>
         <div class="slider-row"><div class="slider-label"><span>Gauche / Droite</span><span class="val" id="val-card1-x">0px</span></div><input type="range" id="card1-x" min="-150" max="150" value="0" oninput="onSlider(this)"></div>
         <div class="slider-row"><div class="slider-label"><span>Haut / Bas</span><span class="val" id="val-card1-y">0px</span></div><input type="range" id="card1-y" min="-120" max="120" value="0" oninput="onSlider(this)"></div>
+        <div class="slider-row"><div class="slider-label"><span>Rotation</span><span class="val" id="val-card1-rot">0°</span></div><input type="range" id="card1-rot" min="-360" max="360" value="0" oninput="onSlider(this)"></div>
       </div>
       <!-- Carte 2 -->
       <div class="slider-group desktop-only">
@@ -381,6 +441,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;hei
         <div class="slider-row"><div class="slider-label"><span>Taille</span><span class="val" id="val-card2-size">100%</span></div><input type="range" id="card2-size" min="50" max="200" value="100" oninput="onSlider(this)"></div>
         <div class="slider-row"><div class="slider-label"><span>Gauche / Droite</span><span class="val" id="val-card2-x">0px</span></div><input type="range" id="card2-x" min="-150" max="150" value="0" oninput="onSlider(this)"></div>
         <div class="slider-row"><div class="slider-label"><span>Haut / Bas</span><span class="val" id="val-card2-y">0px</span></div><input type="range" id="card2-y" min="-120" max="120" value="0" oninput="onSlider(this)"></div>
+        <div class="slider-row"><div class="slider-label"><span>Rotation</span><span class="val" id="val-card2-rot">0°</span></div><input type="range" id="card2-rot" min="-360" max="360" value="0" oninput="onSlider(this)"></div>
       </div>
       <!-- Disponible -->
       <div class="slider-group" style="grid-column:1/-1;">
@@ -389,6 +450,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;hei
           <div class="slider-row"><div class="slider-label"><span>Taille</span><span class="val" id="val-dispo-size">100%</span></div><input type="range" id="dispo-size" min="50" max="200" value="100" oninput="onSlider(this)"></div>
           <div class="slider-row"><div class="slider-label"><span>Gauche / Droite</span><span class="val" id="val-dispo-x">0px</span></div><input type="range" id="dispo-x" min="-150" max="150" value="0" oninput="onSlider(this)"></div>
           <div class="slider-row"><div class="slider-label"><span>Haut / Bas</span><span class="val" id="val-dispo-y">0px</span></div><input type="range" id="dispo-y" min="-120" max="120" value="0" oninput="onSlider(this)"></div>
+          <div class="slider-row"><div class="slider-label"><span>Rotation</span><span class="val" id="val-dispo-rot">0°</span></div><input type="range" id="dispo-rot" min="-360" max="360" value="0" oninput="onSlider(this)"></div>
         </div>
       </div>
       <!-- Animation -->
@@ -411,11 +473,26 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;hei
 const CLOUD_NAME = "dyvmftiyu";
 const UPLOAD_PRESET = "banner_generator";
 const BASE_URL = new URL('.', window.location.href).href.replace(/\/$/, '');
-const TEMPLATE_VERSION = '20260716-final-title-v2';
+const TEMPLATE_VERSION = '20260724-palettes-projects-v1';
+const PALETTE_STORAGE_KEY = 'banner_color_palettes_v1';
+const PROJECT_STORAGE_KEY = 'banner_saved_projects_v1';
 const urls = {};
 let currentTab = 'desktop_fr';
 let iframeReady = false;
 let hdPollTimer = null;
+
+const builtInColorPresets = [
+  {
+    id:'gold',
+    name:'Doré',
+    colors:{col1:'#fff1a8',col2:'#f2c94c',col3:'#3b2504',col4:'#b7791f',col_outline:'#8a5a08',col_glow:'#facc15',col_glow2:'#f59e0b'}
+  },
+  {
+    id:'silver',
+    name:'Argenté',
+    colors:{col1:'#f8fafc',col2:'#cbd5e1',col3:'#111827',col4:'#94a3b8',col_outline:'#475569',col_glow:'#e5e7eb',col_glow2:'#94a3b8'}
+  }
+];
 
 const savedStatusWebhook = localStorage.getItem('banner_status_webhook');
 if (savedStatusWebhook) document.getElementById('status_webhook_url').value = savedStatusWebhook;
@@ -435,14 +512,14 @@ const bannerConfig = {
 // Les réglages sont partagés par famille : Desktop FR/EN, Mobile FR/EN et Story FR/EN.
 const overrides = {};
 const defaultOverrides = {
-  logoSize:100,logoX:0,logoY:0,
-  titreSize:100,titreX:0,titreY:0,
-  displaySize:100,displayX:0,displayY:0,
-  leftBoosterSize:100,leftBoosterX:0,leftBoosterY:0,
-  pairBoosterSize:100,pairBoosterX:0,pairBoosterGap:0,pairBoosterY:0,
-  card1Size:100,card1X:0,card1Y:0,
-  card2Size:100,card2X:0,card2Y:0,
-  dispoSize:100,dispoX:0,dispoY:0
+  logoSize:100,logoX:0,logoY:0,logoRot:0,
+  titreSize:100,titreX:0,titreY:0,titreRot:0,
+  displaySize:100,displayX:0,displayY:0,displayRot:0,
+  leftBoosterSize:100,leftBoosterX:0,leftBoosterY:0,leftBoosterRot:0,
+  pairBoosterSize:100,pairBoosterX:0,pairBoosterGap:0,pairBoosterY:0,pairBoosterRot:0,
+  card1Size:100,card1X:0,card1Y:0,card1Rot:0,
+  card2Size:100,card2X:0,card2Y:0,card2Rot:0,
+  dispoSize:100,dispoX:0,dispoY:0,dispoRot:0
 };
 const familyDefaultOverrides = {
   desktop:{titreSize:200,displaySize:95},
@@ -472,18 +549,18 @@ function updateLinkedOverride(key, value) {
 }
 
 const sliderMap = {
-  'logo-size':'logoSize','logo-x':'logoX','logo-y':'logoY',
-  'titre-size':'titreSize','titre-x':'titreX','titre-y':'titreY',
-  'display-size':'displaySize','display-x':'displayX','display-y':'displayY',
-  'left-booster-size':'leftBoosterSize','left-booster-x':'leftBoosterX','left-booster-y':'leftBoosterY',
-  'pair-booster-size':'pairBoosterSize','pair-booster-x':'pairBoosterX','pair-booster-gap':'pairBoosterGap','pair-booster-y':'pairBoosterY',
-  'card1-size':'card1Size','card1-x':'card1X','card1-y':'card1Y',
-  'card2-size':'card2Size','card2-x':'card2X','card2-y':'card2Y',
-  'dispo-size':'dispoSize','dispo-x':'dispoX','dispo-y':'dispoY'
+  'logo-size':'logoSize','logo-x':'logoX','logo-y':'logoY','logo-rot':'logoRot',
+  'titre-size':'titreSize','titre-x':'titreX','titre-y':'titreY','titre-rot':'titreRot',
+  'display-size':'displaySize','display-x':'displayX','display-y':'displayY','display-rot':'displayRot',
+  'left-booster-size':'leftBoosterSize','left-booster-x':'leftBoosterX','left-booster-y':'leftBoosterY','left-booster-rot':'leftBoosterRot',
+  'pair-booster-size':'pairBoosterSize','pair-booster-x':'pairBoosterX','pair-booster-gap':'pairBoosterGap','pair-booster-y':'pairBoosterY','pair-booster-rot':'pairBoosterRot',
+  'card1-size':'card1Size','card1-x':'card1X','card1-y':'card1Y','card1-rot':'card1Rot',
+  'card2-size':'card2Size','card2-x':'card2X','card2-y':'card2Y','card2-rot':'card2Rot',
+  'dispo-size':'dispoSize','dispo-x':'dispoX','dispo-y':'dispoY','dispo-rot':'dispoRot'
 };
 
 const projectFieldIds = [
-  'titre_ligne1','titre_ligne2',
+  'title_mode','titre_ligne1','titre_ligne2',
   'dispo_ligne1','dispo_reste','dispo_ligne1_en','dispo_reste_en',
   'col1','col2','col3','col4','col_outline','col_glow','col_glow2',
   'webhook_url','status_webhook_url'
@@ -502,8 +579,14 @@ const uiTranslations = {
     background:'Fond / Background',
     backgroundSub:'JPG ou PNG — image clé de la série',
     titleColors:'TITRE & COULEURS',
+    titleType:'Type de titre',
+    titleModeText:'Titre texte',
+    titleModeImage:'Image / logo',
     titleLine1:'Titre ligne 1 (FR + EN)',
     titleLine2:'Titre ligne 2 (FR + EN)',
+    titleImage:'Image / logo de titre',
+    titleImageLabel:'Image titre',
+    titleImageSub:'Optionnel — remplace le texte',
     textsTitle:'TEXTES',
     advancedSettings:'PARAMÈTRES AVANCÉS',
     configurationTitle:'CONFIGURATION',
@@ -512,7 +595,9 @@ const uiTranslations = {
     statusWebhookPlaceholder:'À coller après la création du scénario de suivi Make',
     generateBtn:'⚡ GÉNÉRER LES BANNIÈRES',
     saveProject:'💾 SAUVEGARDER LE PROJET',
+    exportProject:'⬇ EXPORTER JSON',
     importProject:'📂 IMPORTER UN PROJET',
+    savedProjects:'PROJETS ENREGISTRÉS',
     resultTitle:'✅ BANNIÈRES GÉNÉRÉES !',
     editorTitle:'🎛️ AJUSTER LES BANNIÈRES',
     assetStatusDefault:'Images du simulateur : versions originales.',
@@ -535,8 +620,14 @@ const uiTranslations = {
     background:'Background',
     backgroundSub:'JPG or PNG — key image for the series',
     titleColors:'TITLE & COLORS',
+    titleType:'Title type',
+    titleModeText:'Text title',
+    titleModeImage:'Image / logo',
     titleLine1:'Title line 1 (FR + EN)',
     titleLine2:'Title line 2 (FR + EN)',
+    titleImage:'Title image / logo',
+    titleImageLabel:'Title image',
+    titleImageSub:'Optional — replaces text',
     textsTitle:'TEXTS',
     advancedSettings:'ADVANCED SETTINGS',
     configurationTitle:'CONFIGURATION',
@@ -545,7 +636,9 @@ const uiTranslations = {
     statusWebhookPlaceholder:'Paste it after creating the Make status scenario',
     generateBtn:'⚡ GENERATE BANNERS',
     saveProject:'💾 SAVE PROJECT',
+    exportProject:'⬇ EXPORT JSON',
     importProject:'📂 IMPORT PROJECT',
+    savedProjects:'SAVED PROJECTS',
     resultTitle:'✅ BANNERS GENERATED!',
     editorTitle:'🎛️ ADJUST BANNERS',
     assetStatusDefault:'Simulator images: original versions.',
@@ -568,8 +661,14 @@ const uiTranslations = {
     background:'背景',
     backgroundSub:'JPGまたはPNG — シリーズのキー画像',
     titleColors:'タイトル & カラー',
+    titleType:'タイトルタイプ',
+    titleModeText:'テキストタイトル',
+    titleModeImage:'画像 / ロゴ',
     titleLine1:'タイトル 1行目（FR + EN）',
     titleLine2:'タイトル 2行目（FR + EN）',
+    titleImage:'タイトル画像 / ロゴ',
+    titleImageLabel:'タイトル画像',
+    titleImageSub:'任意 — テキストの代わりに使用',
     textsTitle:'テキスト',
     advancedSettings:'詳細設定',
     configurationTitle:'設定',
@@ -578,7 +677,9 @@ const uiTranslations = {
     statusWebhookPlaceholder:'Makeの確認シナリオ作成後に貼り付け',
     generateBtn:'⚡ バナーを生成',
     saveProject:'💾 プロジェクトを保存',
+    exportProject:'⬇ JSONを書き出し',
     importProject:'📂 プロジェクトを読み込み',
+    savedProjects:'保存済みプロジェクト',
     resultTitle:'✅ バナー生成完了！',
     editorTitle:'🎛️ バナーを調整',
     assetStatusDefault:'シミュレーター画像：オリジナル版を使用中。',
@@ -617,10 +718,160 @@ function setUiLanguage(lang) {
   applyUiLanguage();
 }
 
+function safeText(value) {
+  return String(value || '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+}
+
+function getCurrentPalette() {
+  return {
+    col1:document.getElementById('col1').value,
+    col2:document.getElementById('col2').value,
+    col3:document.getElementById('col3').value,
+    col4:document.getElementById('col4').value,
+    col_outline:document.getElementById('col_outline').value,
+    col_glow:document.getElementById('col_glow').value,
+    col_glow2:document.getElementById('col_glow2').value
+  };
+}
+
+function applyPalette(colors, message='Palette appliquée.') {
+  Object.entries(colors || {}).forEach(([id,value]) => {
+    const el = document.getElementById(id);
+    if (el && value) el.value = value;
+  });
+  updatePreview();
+  sendToIframe();
+  const status = document.getElementById('paletteStatus');
+  if (status) status.textContent = message;
+}
+
+function getCustomPalettes() {
+  try { return JSON.parse(localStorage.getItem(PALETTE_STORAGE_KEY) || '[]'); }
+  catch(e) { return []; }
+}
+
+function setCustomPalettes(palettes) {
+  localStorage.setItem(PALETTE_STORAGE_KEY, JSON.stringify(palettes));
+}
+
+function renderColorPresets() {
+  const wrap = document.getElementById('colorPresetList');
+  if (!wrap) return;
+  const custom = getCustomPalettes();
+  const buttons = builtInColorPresets.map(palette => {
+    const c = palette.colors;
+    return `<button type="button" class="palette-btn" onclick="applyPaletteById('${palette.id}')"><span class="palette-dot" style="background:${c.col1};--dot2:${c.col2};--dot3:${c.col_outline}"></span>${safeText(palette.name)}</button>`;
+  });
+  custom.forEach(palette => {
+    const c = palette.colors;
+    buttons.push(`<button type="button" class="palette-btn" onclick="applyPaletteById('${palette.id}')"><span class="palette-dot" style="background:${c.col1};--dot2:${c.col2};--dot3:${c.col_outline}"></span>${safeText(palette.name)}<span class="palette-delete" onclick="event.stopPropagation();deleteCustomPalette('${palette.id}')">×</span></button>`);
+  });
+  wrap.innerHTML = buttons.join('');
+}
+
+function applyPaletteById(id) {
+  const palette = builtInColorPresets.concat(getCustomPalettes()).find(item => item.id === id);
+  if (palette) applyPalette(palette.colors, 'Palette "'+palette.name+'" appliquée.');
+}
+
+function saveCurrentPalette() {
+  const name = prompt('Nom de la combinaison couleur ?', 'Palette personnalisée');
+  if (!name) return;
+  const palettes = getCustomPalettes();
+  palettes.push({id:'custom_'+Date.now(), name:name.trim(), colors:getCurrentPalette()});
+  setCustomPalettes(palettes);
+  renderColorPresets();
+  document.getElementById('paletteStatus').textContent = 'Palette enregistrée.';
+}
+
+function deleteCustomPalette(id) {
+  setCustomPalettes(getCustomPalettes().filter(palette => palette.id !== id));
+  renderColorPresets();
+  document.getElementById('paletteStatus').textContent = 'Palette supprimée.';
+}
+
+function hexToRgb(hex) {
+  const clean = String(hex || '').replace('#','');
+  const num = parseInt(clean.length === 3 ? clean.split('').map(x => x+x).join('') : clean, 16);
+  return {r:(num >> 16) & 255,g:(num >> 8) & 255,b:num & 255};
+}
+
+function rgbToHex(r,g,b) {
+  return '#'+[r,g,b].map(v => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2,'0')).join('');
+}
+
+function mixColor(hex, target, amount) {
+  const a = hexToRgb(hex), b = hexToRgb(target);
+  return rgbToHex(a.r+(b.r-a.r)*amount, a.g+(b.g-a.g)*amount, a.b+(b.b-a.b)*amount);
+}
+
+function luminance(hex) {
+  const c = hexToRgb(hex);
+  return (0.2126*c.r + 0.7152*c.g + 0.0722*c.b) / 255;
+}
+
+async function dominantColorFromUrl(url) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      try {
+        const canvas = document.createElement('canvas');
+        const size = 72;
+        canvas.width = size; canvas.height = size;
+        const ctx = canvas.getContext('2d', {willReadFrequently:true});
+        ctx.drawImage(img, 0, 0, size, size);
+        const data = ctx.getImageData(0, 0, size, size).data;
+        const buckets = {};
+        for (let i=0; i<data.length; i+=16) {
+          const r=data[i], g=data[i+1], b=data[i+2], a=data[i+3];
+          if (a < 120) continue;
+          if (r+g+b < 65 || r+g+b > 720) continue;
+          const key = [r,g,b].map(v => Math.round(v/32)*32).join(',');
+          buckets[key] = (buckets[key] || 0) + 1;
+        }
+        const best = Object.entries(buckets).sort((a,b) => b[1]-a[1])[0];
+        if (!best) reject(new Error('Aucune couleur détectée.'));
+        const [r,g,b] = best[0].split(',').map(Number);
+        resolve(rgbToHex(r,g,b));
+      } catch(e) { reject(e); }
+    };
+    img.onerror = () => reject(new Error('Image impossible à analyser.'));
+    img.src = url;
+  });
+}
+
+async function suggestColorsFromProduct() {
+  const status = document.getElementById('paletteStatus');
+  const source = urls.display_url || urls.booster_url || urls.card1_url || urls.bg_url;
+  if (!source) {
+    status.textContent = 'Ajoute d’abord un produit ou une display à analyser.';
+    return;
+  }
+  status.textContent = 'Analyse des couleurs du produit...';
+  try {
+    const base = await dominantColorFromUrl(source);
+    const darkBase = luminance(base) > 0.48 ? mixColor(base, '#111827', 0.55) : base;
+    const colors = {
+      col1:mixColor(base, '#ffffff', 0.62),
+      col2:mixColor(base, '#ffffff', 0.22),
+      col3:'#0d0d18',
+      col4:mixColor(darkBase, '#000000', 0.08),
+      col_outline:mixColor(darkBase, '#000000', 0.35),
+      col_glow:mixColor(base, '#ffffff', 0.18),
+      col_glow2:mixColor(base, '#000000', 0.12)
+    };
+    applyPalette(colors, 'Couleurs adaptées au produit. Ajuste si besoin.');
+  } catch(err) {
+    status.textContent = 'Analyse impossible ici. Essaie avec une image uploadée via Cloudinary.';
+  }
+}
+
 const assetPreviewMap = {
   booster_url:{zone:'zone-booster',preview:'prev-booster',label:'Booster'},
   display_url:{zone:'zone-display',preview:'prev-display',label:'Display'},
   logo_url:{zone:'zone-logo',preview:'prev-logo',label:'Logo',large:'prev-logo-large'},
+  title_image_url:{zone:'zone-title-image',preview:'prev-title-image',label:'Image titre'},
   card1_url:{zone:'zone-card1',preview:'prev-card1',label:'Carte 1'},
   card2_url:{zone:'zone-card2',preview:'prev-card2',label:'Carte 2'},
   bg_url:{zone:'zone-bg',preview:'prev-bg',label:'Fond'}
@@ -639,6 +890,8 @@ function getParams() {
     card2_url: urls.card2_url||'',
     bg_url: urls.bg_url||'',
     logo_url: urls.logo_url||'',
+    title_mode: document.getElementById('title_mode').value,
+    title_image_url: urls.title_image_url||'',
     titre_ligne1: document.getElementById('titre_ligne1').value,
     titre_ligne2: document.getElementById('titre_ligne2').value,
     dispo_ligne1: document.getElementById('dispo_ligne1').value,
@@ -694,7 +947,88 @@ function collectProjectState() {
   };
 }
 
+function getProjectTitle(project) {
+  const title = (project?.fields?.titre_ligne1 || 'banner').trim();
+  const second = (project?.fields?.titre_ligne2 || '').trim();
+  return [title, second].filter(Boolean).join(' ') || 'Projet banner';
+}
+
+function getSavedProjects() {
+  try { return JSON.parse(localStorage.getItem(PROJECT_STORAGE_KEY) || '[]'); }
+  catch(e) { return []; }
+}
+
+function setSavedProjects(projects) {
+  localStorage.setItem(PROJECT_STORAGE_KEY, JSON.stringify(projects));
+}
+
+function renderSavedProjects() {
+  const library = document.getElementById('projectLibrary');
+  const list = document.getElementById('projectList');
+  if (!library || !list) return;
+  const projects = getSavedProjects();
+  library.classList.toggle('show', projects.length > 0);
+  if (!projects.length) {
+    list.innerHTML = '<div class="project-empty">Aucun projet enregistré pour le moment.</div>';
+    return;
+  }
+  list.innerHTML = projects.map(project => {
+    const date = project.savedAt ? new Date(project.savedAt).toLocaleString() : '';
+    return `<div class="project-item">
+      <div><div class="project-name">${safeText(project.name || getProjectTitle(project))}</div><div class="project-date">${safeText(date)}</div></div>
+      <button type="button" class="btn-mini" onclick="loadSavedProject('${project.id}')">Charger</button>
+      <button type="button" class="btn-mini danger" onclick="deleteSavedProject('${project.id}')">Supprimer</button>
+    </div>`;
+  }).join('');
+}
+
+function applyProjectState(project) {
+  Object.entries(project.fields || {}).forEach(([id,value]) => {
+    const el = document.getElementById(id);
+    if (el) el.value = value;
+  });
+  Object.assign(urls, project.urls || {});
+  Object.entries(urls).forEach(([key,url]) => applyAssetPreview(key,url));
+  Object.entries(project.overrides || {}).forEach(([tab,value]) => {
+    if (overrides[tab]) overrides[tab] = {...getDefaultOverrides(tab), ...value};
+  });
+  const targetTab = bannerConfig[project.currentTab] ? project.currentTab : currentTab;
+  currentTab = targetTab;
+  const desktop = currentTab.startsWith('desktop');
+  document.querySelectorAll('.banner-tab').forEach(tabEl => {
+    tabEl.classList.toggle('active', tabEl.getAttribute('onclick')?.includes("'"+currentTab+"'"));
+  });
+  document.querySelectorAll('.desktop-only').forEach(group => group.classList.toggle('is-hidden', !desktop));
+  updateSyncNote();
+  const ov = overrides[currentTab];
+  Object.entries(sliderMap).forEach(([sid, key]) => {
+    const el = document.getElementById(sid);
+    if (!el) return;
+    el.value = ov[key];
+    const numberInput = document.getElementById('num-'+sid);
+    if (numberInput) numberInput.value = ov[key];
+    const unit = sid.includes('size') ? '%' : (sid.includes('rot') ? '°' : 'px');
+    document.getElementById('val-'+sid).textContent = ov[key]+unit;
+  });
+  updatePreview();
+  onAnimationControl();
+  document.getElementById('editorCard').classList.add('show');
+  loadIframe(currentTab);
+}
+
 function saveProject() {
+  const project = collectProjectState();
+  const name = prompt('Nom du projet ?', getProjectTitle(project));
+  if (!name) return;
+  const projects = getSavedProjects();
+  const savedProject = {...project, id:'project_'+Date.now(), name:name.trim(), savedAt:new Date().toISOString()};
+  projects.unshift(savedProject);
+  setSavedProjects(projects);
+  renderSavedProjects();
+  document.getElementById('statusMsg').textContent = '✅ Projet enregistré dans cet outil.';
+}
+
+function exportCurrentProjectJson() {
   const project = collectProjectState();
   const title = (project.fields.titre_ligne1 || 'banner').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'banner';
   const blob = new Blob([JSON.stringify(project,null,2)], {type:'application/json'});
@@ -707,6 +1041,19 @@ function saveProject() {
   setTimeout(() => URL.revokeObjectURL(link.href), 1000);
 }
 
+function loadSavedProject(id) {
+  const project = getSavedProjects().find(item => item.id === id);
+  if (!project) return;
+  applyProjectState(project);
+  document.getElementById('statusMsg').textContent = '✅ Projet chargé.';
+}
+
+function deleteSavedProject(id) {
+  if (!confirm('Supprimer ce projet enregistré ?')) return;
+  setSavedProjects(getSavedProjects().filter(project => project.id !== id));
+  renderSavedProjects();
+}
+
 function importProject(input) {
   const file = input.files && input.files[0];
   if (!file) return;
@@ -714,36 +1061,7 @@ function importProject(input) {
   reader.onload = () => {
     try {
       const project = JSON.parse(reader.result);
-      Object.entries(project.fields || {}).forEach(([id,value]) => {
-        const el = document.getElementById(id);
-        if (el) el.value = value;
-      });
-      Object.assign(urls, project.urls || {});
-      Object.entries(urls).forEach(([key,url]) => applyAssetPreview(key,url));
-      Object.entries(project.overrides || {}).forEach(([tab,value]) => {
-        if (overrides[tab]) overrides[tab] = {...getDefaultOverrides(tab), ...value};
-      });
-      const targetTab = bannerConfig[project.currentTab] ? project.currentTab : currentTab;
-      currentTab = targetTab;
-      const desktop = currentTab.startsWith('desktop');
-      const mobile = currentTab.startsWith('mobile');
-      document.querySelectorAll('.banner-tab').forEach(tabEl => {
-        tabEl.classList.toggle('active', tabEl.getAttribute('onclick')?.includes("'"+currentTab+"'"));
-      });
-      document.querySelectorAll('.desktop-only').forEach(group => group.classList.toggle('is-hidden', !desktop));
-      updateSyncNote();
-      const ov = overrides[currentTab];
-      Object.entries(sliderMap).forEach(([sid, key]) => {
-        const el = document.getElementById(sid);
-        if (!el) return;
-        el.value = ov[key];
-        const unit = sid.includes('size') ? '%' : 'px';
-        document.getElementById('val-'+sid).textContent = ov[key]+unit;
-      });
-      updatePreview();
-      onAnimationControl();
-      document.getElementById('editorCard').classList.add('show');
-      loadIframe(currentTab);
+      applyProjectState(project);
       document.getElementById('statusMsg').textContent = '✅ Projet importé.';
     } catch(err) {
       const errorMsg = document.getElementById('errorMsg');
@@ -968,34 +1286,40 @@ function applyLiveOverrides(changedKey = null) {
     const el = doc.querySelector(selector);
     if (el) el.style.transform = value;
   };
+  const baseLogoRot = social ? -4 : (desktop ? -5 : -6);
+  const baseTitreRot = social ? -5 : (desktop ? -5 : -6);
+  const baseDisplayRot = social ? 2 : (desktop ? 6 : 1);
+  const basePairLeftRot = social ? -12 : -10;
+  const basePairRightRot = social ? 12 : (desktop ? 16 : 10);
+  const baseDispoRot = social ? -5 : (desktop ? -5 : -6);
 
   if (!changedKey || changedKey.startsWith('logo')) {
-    transform('.logo-wrap', `translate(${ov.logoX}px,${ov.logoY}px) rotate(${social ? -4 : (desktop ? -5 : -6)}deg) scale(${ov.logoSize/100})`);
+    transform('.logo-wrap', `translate(${ov.logoX}px,${ov.logoY}px) rotate(${baseLogoRot + ov.logoRot}deg) scale(${ov.logoSize/100})`);
   }
   if (!changedKey || changedKey.startsWith('titre')) {
-    transform('.text-zone', `translate(${ov.titreX}px,${ov.titreY}px) rotate(${social ? -5 : (desktop ? -5 : -6)}deg) scale(${ov.titreSize/100})`);
+    transform('.text-zone', `translate(${ov.titreX}px,${ov.titreY}px) rotate(${baseTitreRot + ov.titreRot}deg) scale(${ov.titreSize/100})`);
   }
   if (!changedKey || changedKey.startsWith('display')) {
-    transform('.disp', `translateX(calc(-50% + ${ov.displayX}px)) translateY(${ov.displayY}px) rotate(${social ? 2 : (desktop ? 6 : 1)}deg) scale(${ov.displaySize/100})`);
+    transform('.disp', `translateX(calc(-50% + ${ov.displayX}px)) translateY(${ov.displayY}px) rotate(${baseDisplayRot + ov.displayRot}deg) scale(${ov.displaySize/100})`);
   }
   if (!changedKey || changedKey.startsWith('pairBooster')) {
-    transform('.b-back-l', `translate(${ov.pairBoosterX - ov.pairBoosterGap}px,${ov.pairBoosterY}px) rotate(${social ? -12 : -10}deg) scale(${ov.pairBoosterSize/100})`);
-    transform('.b-back-r', `translate(${ov.pairBoosterX + ov.pairBoosterGap}px,${ov.pairBoosterY}px) rotate(${social ? 12 : (desktop ? 16 : 10)}deg) scale(${ov.pairBoosterSize/100})`);
+    transform('.b-back-l', `translate(${ov.pairBoosterX - ov.pairBoosterGap}px,${ov.pairBoosterY}px) rotate(${basePairLeftRot + ov.pairBoosterRot}deg) scale(${ov.pairBoosterSize/100})`);
+    transform('.b-back-r', `translate(${ov.pairBoosterX + ov.pairBoosterGap}px,${ov.pairBoosterY}px) rotate(${basePairRightRot + ov.pairBoosterRot}deg) scale(${ov.pairBoosterSize/100})`);
   }
   if (!changedKey || changedKey.startsWith('dispo')) {
-    transform('.dispo-outer', `translate(${ov.dispoX}px,${ov.dispoY}px) rotate(${social ? -5 : (desktop ? -5 : -6)}deg) scale(${ov.dispoSize/100})`);
+    transform('.dispo-outer', `translate(${ov.dispoX}px,${ov.dispoY}px) rotate(${baseDispoRot + ov.dispoRot}deg) scale(${ov.dispoSize/100})`);
   }
   if (desktop) {
-    if (!changedKey || changedKey.startsWith('leftBooster')) transform('.bl', `translate(${ov.leftBoosterX}px,${ov.leftBoosterY}px) rotate(-7deg) scale(${ov.leftBoosterSize/100})`);
-    if (!changedKey || changedKey.startsWith('card1')) transform('.cr1', `translate(${ov.card1X}px,${ov.card1Y}px) rotate(-10deg) scale(${ov.card1Size/100})`);
-    if (!changedKey || changedKey.startsWith('card2')) transform('.cr2', `translate(${ov.card2X}px,${ov.card2Y}px) rotate(7deg) scale(${ov.card2Size/100})`);
+    if (!changedKey || changedKey.startsWith('leftBooster')) transform('.bl', `translate(${ov.leftBoosterX}px,${ov.leftBoosterY}px) rotate(${-7 + ov.leftBoosterRot}deg) scale(${ov.leftBoosterSize/100})`);
+    if (!changedKey || changedKey.startsWith('card1')) transform('.cr1', `translate(${ov.card1X}px,${ov.card1Y}px) rotate(${-10 + ov.card1Rot}deg) scale(${ov.card1Size/100})`);
+    if (!changedKey || changedKey.startsWith('card2')) transform('.cr2', `translate(${ov.card2X}px,${ov.card2Y}px) rotate(${7 + ov.card2Rot}deg) scale(${ov.card2Size/100})`);
   }
 }
 
 function onSlider(el) {
   const id = el.id;
   const val = Number(el.value);
-  const unit = id.includes('size') ? '%' : 'px';
+  const unit = id.includes('size') ? '%' : (id.includes('rot') ? '°' : 'px');
   document.getElementById('val-'+id).textContent = val+unit;
   const numberInput = document.getElementById('num-'+id);
   if (numberInput && numberInput !== document.activeElement) numberInput.value = val;
@@ -1031,7 +1355,7 @@ function switchTab(tab, el) {
       el2.value = ov[key];
       const numberInput = document.getElementById('num-'+sid);
       if (numberInput) numberInput.value = ov[key];
-      const unit = sid.includes('size') ? '%' : 'px';
+      const unit = sid.includes('size') ? '%' : (sid.includes('rot') ? '°' : 'px');
       document.getElementById('val-'+sid).textContent = ov[key]+unit;
     }
   });
@@ -1057,7 +1381,17 @@ function updatePreview() {
   prev.style.webkitTextStroke='3px '+outline;
   prev.innerHTML = t2?t1+'<br>'+t2:t1;
 }
+function updateTitleMode() {
+  const mode = document.getElementById('title_mode')?.value || 'text';
+  const preview = document.querySelector('.titre-preview');
+  if (preview) preview.style.opacity = mode === 'image' ? '0.45' : '1';
+  const status = document.getElementById('paletteStatus');
+  if (status && mode === 'image') status.textContent = 'Mode image/logo : les jauges Titre contrôlent maintenant cette image.';
+}
 updatePreview();
+updateTitleMode();
+renderColorPresets();
+renderSavedProjects();
 
 async function uploadToCloudinary(input, key, zoneId, prevId, prevLargeId) {
   const file = input.files[0]; if (!file) return;
@@ -1235,7 +1569,7 @@ Object.keys(sliderMap).forEach(sid=>{
     number.onchange=()=>onNumberInput(number);
     number.oninput=()=>onNumberInput(number);
     wrapper.appendChild(number);
-    const unit=sid.includes('size')?'%':'px';
+    const unit=sid.includes('size')?'%':(sid.includes('rot')?'°':'px');
     document.getElementById('val-'+sid).textContent=el.value+unit;
   }
 });
@@ -1246,7 +1580,7 @@ Object.entries(sliderMap).forEach(([sid, key]) => {
   el.value = overrides[currentTab][key];
   const numberInput = document.getElementById('num-'+sid);
   if (numberInput) numberInput.value = overrides[currentTab][key];
-  const unit = sid.includes('size') ? '%' : 'px';
+  const unit = sid.includes('size') ? '%' : (sid.includes('rot') ? '°' : 'px');
   document.getElementById('val-'+sid).textContent = overrides[currentTab][key]+unit;
 });
 
